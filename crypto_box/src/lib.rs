@@ -240,7 +240,7 @@ impl From<&SecretKey> for PublicKey {
     }
 }
 
-use libc_print::libc_print;
+use libc_print::libc_println;
 
 macro_rules! impl_aead_in_place {
     ($box:ty, $nonce_size:ty, $tag_size:ty, $ct_overhead:ty) => {
