@@ -203,8 +203,7 @@ impl AeadInPlace for XSalsa20Poly1305 {
         associated_data: &[u8],
         buffer: &mut dyn Buffer,
     ) -> Result<(), Error> {
-        // libc_println!("*** decrypt_in_place 1 ***");
-        panic!("aaaaaaaaaaaaaaaaaa");
+        // libc_println!("aaaaa");
         if buffer.len() < TAG_SIZE {
             return Err(Error);
         }
@@ -212,6 +211,7 @@ impl AeadInPlace for XSalsa20Poly1305 {
 
         let tag = Tag::clone_from_slice(&buffer.as_ref()[..TAG_SIZE]);
         // libc_println!("*** decrypt_in_place 3 ***");
+        panic!("bbbbbbbb");
         self.decrypt_in_place_detached(
             nonce,
             associated_data,
