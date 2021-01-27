@@ -233,6 +233,7 @@ impl AeadInPlace for XSalsa20Poly1305 {
         buffer: &mut [u8],
         tag: &Tag,
     ) -> Result<(), Error> {
+        panic!("eeeee");
         Cipher::new(XSalsa20::new(&self.key, nonce)).decrypt_in_place_detached(
             associated_data,
             buffer,
@@ -295,7 +296,7 @@ where
         tag: &Tag,
     ) -> Result<(), Error> {
         // XSalsa20Poly1305 doesn't support AAD
-        panic!("ddddd");
+        // "dddd unreached"
         if !associated_data.is_empty() {
             return Err(Error);
         }
