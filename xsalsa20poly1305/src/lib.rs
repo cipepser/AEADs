@@ -204,6 +204,7 @@ impl AeadInPlace for XSalsa20Poly1305 {
         buffer: &mut dyn Buffer,
     ) -> Result<(), Error> {
         // libc_println!("*** decrypt_in_place 1 ***");
+        panic!("aaaaaaaaaaaaaaaaaa");
         if buffer.len() < TAG_SIZE {
             return Err(Error);
         }

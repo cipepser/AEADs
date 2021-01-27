@@ -23,7 +23,6 @@ salsa20 = { version = "0.7", features = ["hsalsa20"] }
 x25519-dalek = { branch = "feature/my-rand_core", git = "https://github.com/cipepser/x25519-dalek", default-features = false }
 #x25519-dalek = { version = "1", default-features = false }
 zeroize = { version = "1", default-features = false }
-libc-print = "0.1"
 
 [dependencies.chacha20poly1305]
 version = "0.7"

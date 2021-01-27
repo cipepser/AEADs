@@ -182,7 +182,6 @@ name = "crypto_box"
 version = "0.5.0"
 dependencies = [
  "chacha20poly1305",
- "libc-print",
  "rand_core",
  "salsa20",
  "x25519-dalek",
@@ -326,21 +325,6 @@ checksum = "221139eedf77a90801f17be9f605bb63452436fc4bb5cac0f5b0cd358045115e"
 dependencies = [
  "cipher",
  "opaque-debug",
-]
-
-[[package]]
-name = "libc"
-version = "0.2.82"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "89203f3fba0a3795506acaad8ebce3c80c0af93f994d5a1d7a0b1eeb23271929"
-
-[[package]]
-name = "libc-print"
-version = "0.1.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "61b5bfc4709b4337e0083fd169e0e10455840647b8ea59853cb134c4de290dfe"
-dependencies = [
- "libc",
 ]
 
 [[package]]
