@@ -271,8 +271,9 @@ where
         let mut mac_key = poly1305::Key::default();
         // panic!("hhhh reached");
         cipher.apply_keystream(&mut *mac_key);
-        panic!("jjjj");
+        // panic!("jjjj reached");
         let mac = Poly1305::new(GenericArray::from_slice(&*mac_key));
+        panic!("kkkk");
         mac_key.zeroize();
 
         // panic!("iiii unreached");
