@@ -272,8 +272,10 @@ where
         // panic!("hhhh reached");
         cipher.apply_keystream(&mut *mac_key);
         // panic!("jjjj reached");
-        let mac = Poly1305::new(GenericArray::from_slice(&*mac_key));
-        panic!("kkkk");
+        let key = GenericArray::from_slice(&*mac_key);
+        panic!("llll");
+        let mac = Poly1305::new(key);
+        // panic!("kkkk unreached");
         mac_key.zeroize();
 
         // panic!("iiii unreached");
