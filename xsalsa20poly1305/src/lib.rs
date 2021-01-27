@@ -233,8 +233,10 @@ impl AeadInPlace for XSalsa20Poly1305 {
         buffer: &mut [u8],
         tag: &Tag,
     ) -> Result<(), Error> {
-        panic!("eeeee");
-        Cipher::new(XSalsa20::new(&self.key, nonce)).decrypt_in_place_detached(
+        // panic!("eeeee reached");
+        let cipher = XSalsa20::new(&self.key, nonce);
+        panic!("ffff");
+        Cipher::new(cipher).decrypt_in_place_detached(
             associated_data,
             buffer,
             tag,
