@@ -194,6 +194,7 @@ use xsalsa20poly1305::aead::{
 };
 use xsalsa20poly1305::XSalsa20Poly1305;
 use zeroize::Zeroize;
+use libc_print::libc_println;
 
 /// Size of a `crypto_box` public or secret key in bytes.
 pub const KEY_SIZE: usize = 32;
@@ -272,6 +273,7 @@ macro_rules! impl_aead_in_place {
                 associated_data: &[u8],
                 buffer: &mut dyn Buffer,
             ) -> Result<(), Error> {
+                libc_println!("*** decrypt_in_place 0 ***");
                 self.0.decrypt_in_place(nonce, associated_data, buffer)
             }
 
