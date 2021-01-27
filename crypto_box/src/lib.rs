@@ -240,8 +240,6 @@ impl From<&SecretKey> for PublicKey {
     }
 }
 
-use libc_print::libc_println;
-
 macro_rules! impl_aead_in_place {
     ($box:ty, $nonce_size:ty, $tag_size:ty, $ct_overhead:ty) => {
         impl AeadInPlace for $box {
@@ -255,7 +253,6 @@ macro_rules! impl_aead_in_place {
                 associated_data: &[u8],
                 buffer: &mut dyn Buffer,
             ) -> Result<(), Error> {
-                libc_println!("*** encrypt_in_place ***");
                 self.0.encrypt_in_place(nonce, associated_data, buffer)
             }
 

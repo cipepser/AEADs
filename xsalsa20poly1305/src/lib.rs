@@ -112,6 +112,7 @@ use salsa20::{
     XSalsa20,
 };
 use zeroize::Zeroize;
+use libc_print::libc_println;
 
 #[cfg(feature = "rand_core")]
 use rand_core::{CryptoRng, RngCore};
@@ -202,23 +203,28 @@ impl AeadInPlace for XSalsa20Poly1305 {
         associated_data: &[u8],
         buffer: &mut dyn Buffer,
     ) -> Result<(), Error> {
+        libc_println!("*** decrypt_in_place 1 ***");
         if buffer.len() < TAG_SIZE {
             return Err(Error);
         }
+        libc_println!("*** decrypt_in_place 2 ***");
 
         let tag = Tag::clone_from_slice(&buffer.as_ref()[..TAG_SIZE]);
+        libc_println!("*** decrypt_in_place 3 ***");
         self.decrypt_in_place_detached(
             nonce,
             associated_data,
             &mut buffer.as_mut()[TAG_SIZE..],
             &tag,
         )?;
+        libc_println!("*** decrypt_in_place 4 ***");
 
         let pt_len = buffer.len() - TAG_SIZE;
 
         // TODO(tarcieri): add offset param to `encrypt_in_place_detached`
         buffer.as_mut().copy_within(TAG_SIZE.., 0);
         buffer.truncate(pt_len);
+        libc_println!("*** decrypt_in_place 5 ***");
         Ok(())
     }
 
