@@ -238,11 +238,7 @@ impl AeadInPlace for XSalsa20Poly1305 {
         // panic!("ffff reached");
         let c = Cipher::new(cipher);
         // panic!("gggg unreached");
-        c.decrypt_in_place_detached(
-            associated_data,
-            buffer,
-            tag,
-        )
+        c.decrypt_in_place_detached(associated_data, buffer, tag)
     }
 }
 
@@ -269,16 +265,10 @@ where
     pub(crate) fn new(mut cipher: C) -> Self {
         // Derive Poly1305 key from the first 32-bytes of the Salsa20 keystream
         let mut mac_key = poly1305::Key::default();
-        // panic!("hhhh reached");
         cipher.apply_keystream(&mut *mac_key);
-        // panic!("jjjj reached");
-        let key = GenericArray::from_slice(&*mac_key);
-        // panic!("llll reached");
-        let mac = Poly1305::new(key);
-        // panic!("kkkk unreached");
+        let mac = Poly1305::new(GenericArray::from_slice(&*mac_key));
         mac_key.zeroize();
 
-        // panic!("iiii unreached");
         Self { cipher, mac }
     }
 
@@ -306,7 +296,6 @@ where
         tag: &Tag,
     ) -> Result<(), Error> {
         // XSalsa20Poly1305 doesn't support AAD
-        // "dddd unreached"
         if !associated_data.is_empty() {
             return Err(Error);
         }
