@@ -235,8 +235,10 @@ impl AeadInPlace for XSalsa20Poly1305 {
     ) -> Result<(), Error> {
         // panic!("eeeee reached");
         let cipher = XSalsa20::new(&self.key, nonce);
-        panic!("ffff");
-        Cipher::new(cipher).decrypt_in_place_detached(
+        // panic!("ffff reached");
+        let c = Cipher::new(cipher);
+        panic!("gggg");
+        c.decrypt_in_place_detached(
             associated_data,
             buffer,
             tag,
