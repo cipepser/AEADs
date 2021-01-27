@@ -253,7 +253,7 @@ macro_rules! impl_aead_in_place {
                 associated_data: &[u8],
                 buffer: &mut dyn Buffer,
             ) -> Result<(), Error> {
-                println!("****encrypt_in_place start****");
+                dbg!("****encrypt_in_place start****");
                 self.0.encrypt_in_place(nonce, associated_data, buffer)
             }
 
