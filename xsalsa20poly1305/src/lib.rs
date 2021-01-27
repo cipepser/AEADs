@@ -216,15 +216,13 @@ impl AeadInPlace for XSalsa20Poly1305 {
             &mut buffer.as_mut()[TAG_SIZE..],
             &tag,
         )?;
-        panic!("cccccccc");
-        // libc_println!("*** decrypt_in_place 4 ***");
+        // libc_println!("cccc unreached");
 
         let pt_len = buffer.len() - TAG_SIZE;
 
         // TODO(tarcieri): add offset param to `encrypt_in_place_detached`
         buffer.as_mut().copy_within(TAG_SIZE.., 0);
         buffer.truncate(pt_len);
-        // libc_println!("*** decrypt_in_place 5 ***");
         Ok(())
     }
 
@@ -297,6 +295,7 @@ where
         tag: &Tag,
     ) -> Result<(), Error> {
         // XSalsa20Poly1305 doesn't support AAD
+        panic!("ddddd");
         if !associated_data.is_empty() {
             return Err(Error);
         }
