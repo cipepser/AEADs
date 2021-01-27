@@ -237,7 +237,7 @@ impl AeadInPlace for XSalsa20Poly1305 {
         let cipher = XSalsa20::new(&self.key, nonce);
         // panic!("ffff reached");
         let c = Cipher::new(cipher);
-        panic!("gggg");
+        // panic!("gggg unreached");
         c.decrypt_in_place_detached(
             associated_data,
             buffer,
@@ -269,6 +269,7 @@ where
     pub(crate) fn new(mut cipher: C) -> Self {
         // Derive Poly1305 key from the first 32-bytes of the Salsa20 keystream
         let mut mac_key = poly1305::Key::default();
+        panic!("hhhh");
         cipher.apply_keystream(&mut *mac_key);
         let mac = Poly1305::new(GenericArray::from_slice(&*mac_key));
         mac_key.zeroize();
